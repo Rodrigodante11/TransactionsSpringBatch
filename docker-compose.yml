@@ -1,13 +1,20 @@
-version: '3.8'
+version: '3'
 
 services:
-  mysql:
-    image: mysql:latest
-    container_name: mysql
+  database:
+    restart: always
+    image: postgres:latest
+    container_name: postgres
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_USER: user
-      MYSQL_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: spring_batch
     ports:
-      - "3306:3306"
-    command: bash -c "echo 'CREATE DATABASE IF NOT EXISTS spring_batch;' > /docker-entrypoint-initdb.d/init.sql && docker-entrypoint.sh mysqld"
+      - "5432:5432"  # - local:docker
+
+    volumes: # aonde ficara os dados apos derrubar o container
+      - pg-data:/var/lib/postgresql/data
+
+volumes:
+  pg-data:
+
