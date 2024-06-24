@@ -30,11 +30,11 @@ public class BatchConfig {
     public Job ImprimeOlaJob(){
         return jobBuilderFactory
                 .get("ImprimeOlaJob")
-                .start(imprimiOlaStep())
+                .start(imprimeOlaStep())
                 .build();
     }
 
-    public Step imprimiOlaStep(){
+    public Step imprimeOlaStep(){
         return stepBuilderFactory
                 .get("imprimiOlaStep")
                 .tasklet(new Tasklet() {   // para pequenas tarefas
