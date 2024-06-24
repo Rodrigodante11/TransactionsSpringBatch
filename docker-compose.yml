@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: user
+      MYSQL_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+    command: bash -c "echo 'CREATE DATABASE IF NOT EXISTS spring_batch;' > /docker-entrypoint-initdb.d/init.sql && docker-entrypoint.sh mysqld"
